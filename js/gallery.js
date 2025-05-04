@@ -69,7 +69,7 @@ const imagesList = document.querySelector(".gallery");
 function imgElement({preview, original, description}) {
     return `
     <li class="gallery-item">
-        <a class="gallery-link" href="#">
+        <a class="gallery-link" href="${original}">
             <img
               class="gallery-image"
               src="${preview}"
@@ -96,7 +96,9 @@ renderingImgCollection(images)
 imagesList.addEventListener('click', logFullSizeImg);
 
 function logFullSizeImg(e) {
-  if (e.target === e.currentTarget) return;
+  e.preventDefault();
+
+  if (e.target.tagName !== "IMG") return;
   
   const largeImg = e.target.dataset.source;
   const imgDescription = e.target.alt;
